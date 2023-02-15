@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "640290514536",
+    "project_id": "btlandroid-47dc0",
+    "storage_bucket": "btlandroid-47dc0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:640290514536:android:ce015acec3c87b5f1c7ddd",
+        "android_client_info": {
+          "package_name": "com.duck.appandroid"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "640290514536-fmnavmm20nkpg2h2pohjed70oi9gc0e8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.duck.appandroid",
+            "certificate_hash": "985917c128ac5886ffbc252d4220e0c8c9647795"
+          }
+        },
+        {
+          "client_id": "640290514536-hqg371stdc0ijkcktl14967ghq8ecafs.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC3-vAbwtMVacP9gWFd3lil1rCwNk8JQz8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "640290514536-hqg371stdc0ijkcktl14967ghq8ecafs.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
