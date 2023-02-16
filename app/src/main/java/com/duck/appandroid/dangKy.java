@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -29,20 +30,41 @@ public class dangKy extends AppCompatActivity {
         final EditText email = findViewById(R.id.r_email);
         final AppCompatButton dangkyBtn = findViewById(R.id.r_dangkyBtn);
 
+        ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog.setCancelable(false);
+        progressDialog.setMessage("Loading....");
+
+        // check tài khoản đã được log in
+        if (!MemoryData.getData(this).isEmpty()) {
+
+            Intent intent = new Intent(dangKy.this,MainActivity.class);
+            intent.putExtra("sdt",MemoryData.getData(this));
+            intent.putExtra("name",MemoryData.getName(this));
+            intent.putExtra("email","");
+            startActivity(intent);
+            finish();
+        }
+
         dangkyBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                progressDialog.show();
+
                 final String nameTxt = name.getText().toString();
                 final String sdtTxt = sdt.getText().toString();
                 final String emailTxt = email.getText().toString();
 
                 if (nameTxt.isEmpty() || sdtTxt.isEmpty() || emailTxt.isEmpty()) {
                     Toast.makeText(dangKy.this,"Chưa điền đủ thông tin!",Toast.LENGTH_SHORT).show();
+                    progressDialog.dismiss();
                 }
                 else {
                     databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                            progressDialog.dismiss();
 
                             if (snapshot.child("users").hasChild(sdtTxt)) {
                                 Toast.makeText(dangKy.this,"Số điện thoại đã tồn tại",Toast.LENGTH_SHORT).show();
@@ -50,6 +72,12 @@ public class dangKy extends AppCompatActivity {
                             else {
                                 databaseReference.child("users").child(sdtTxt).child("email").setValue(emailTxt);
                                 databaseReference.child("users").child(sdtTxt).child("name").setValue(nameTxt);
+                                databaseReference.child("users").child(sdtTxt).child("profile_pic").setValue("");
+
+                                //Lưu số điện thoại vào bộ nhớ
+                                MemoryData.saveData(sdtTxt, dangKy.this);
+                                //Lưu số tên vào bộ nhớ
+                                MemoryData.saveName(nameTxt,dangKy.this);
 
                                 Toast.makeText(dangKy.this,"Đăng ký thành công",Toast.LENGTH_SHORT).show();
 
@@ -57,14 +85,14 @@ public class dangKy extends AppCompatActivity {
                                 intent.putExtra("sdt",sdtTxt);
                                 intent.putExtra("name",nameTxt);
                                 intent.putExtra("email",emailTxt);
-                                startActivities(new Intent[]{intent});
+                                startActivity(intent);
                                 finish();
                             }
                         }
 
                         @Override
                         public void onCancelled(@NonNull DatabaseError error) {
-
+                            progressDialog.dismiss();
                         }
                     });
                 }
