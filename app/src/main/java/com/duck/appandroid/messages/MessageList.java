@@ -1,16 +1,17 @@
 package com.duck.appandroid.messages;
 
 public class MessageList {
-    private String name, sdt, lastMessage, profilePic;
+    private String name, sdt, lastMessage, profilePic, chatKey;
 
     private int unseenMessages;
 
-    public MessageList(String name, String sdt, String lastMessage, String profilePic, int unseenMessages) {
+    public MessageList(String name, String sdt, String lastMessage, String profilePic, int unseenMessages, String chatKey) {
         this.name = name;
         this.sdt = sdt;
         this.lastMessage = lastMessage;
         this.profilePic = profilePic;
         this.unseenMessages = unseenMessages;
+        this.chatKey = chatKey;
     }
 
     public String getName() {
@@ -31,5 +32,9 @@ public class MessageList {
 
     public int getUnseenMessages() {
         return unseenMessages;
+    }
+
+    public String getChatKey() {
+        return chatKey;
     }
 }
