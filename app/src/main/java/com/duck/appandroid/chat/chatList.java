@@ -2,22 +2,23 @@ package com.duck.appandroid.chat;
 
 public class chatList {
 
-    private String name,sdt,message,date,time;
+    private String sdt,name,message,date,time;
 
-    public chatList(String name, String sdt, String message, String date, String time) {
-        this.name = name;
+    public chatList(String sdt, String name, String message, String date, String time) {
+
         this.sdt = sdt;
+        this.name = name;
         this.message = message;
         this.date = date;
         this.time = time;
     }
 
-    public String getName() {
-        return name;
-    }
-
     public String getSdt() {
         return sdt;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public String getMessage() {

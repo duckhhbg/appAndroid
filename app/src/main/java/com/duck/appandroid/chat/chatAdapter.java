@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -19,7 +20,7 @@ public class chatAdapter extends RecyclerView.Adapter<chatAdapter.MyViewHodel> {
 
     private List<chatList> chatLists;
     private final Context context;
-    private String userSdt;
+    private final String userSdt;
 
     public chatAdapter(List<chatList> chatLists, Context context) {
         this.chatLists = chatLists;
@@ -38,16 +39,18 @@ public class chatAdapter extends RecyclerView.Adapter<chatAdapter.MyViewHodel> {
 
         chatList list2 = chatLists.get(position);
 
-        if (list2.getSdt().equals(userSdt)) {
+        if (list2.getSdt().equals(userSdt)){
+
             holder.myLayout.setVisibility(View.VISIBLE);
             holder.oppoLayout.setVisibility(View.GONE);
 
             holder.myMessage.setText(list2.getMessage());
-            holder.myMsgTime.setText(list2.getDate() + " " + list2.getTime());
+            holder.myMsgTime.setText(list2.getDate() + " " + list2.getTime() + " ");
+
         }
         else {
-            holder.oppoLayout.setVisibility(View.VISIBLE);
             holder.myLayout.setVisibility(View.GONE);
+            holder.oppoLayout.setVisibility(View.VISIBLE);
 
             holder.oppoMessage.setText(list2.getMessage());
             holder.oppoMsgTime.setText(list2.getDate() + " " + list2.getTime());
@@ -68,10 +71,10 @@ public class chatAdapter extends RecyclerView.Adapter<chatAdapter.MyViewHodel> {
 
     static class MyViewHodel extends RecyclerView.ViewHolder {
 
-        private LinearLayout oppoLayout, myLayout;
-        private TextView oppoMessage, myMessage;
-        private TextView oppoMsgTime, myMsgTime;
-        public MyViewHodel(@NonNull View itemView) {
+        private final LinearLayout oppoLayout, myLayout;
+        private final TextView oppoMessage, myMessage;
+        private final TextView oppoMsgTime, myMsgTime;
+        public  MyViewHodel(@NonNull View itemView) {
             super(itemView);
 
             oppoLayout = itemView.findViewById(R.id.oppoLayout);
