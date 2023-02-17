@@ -108,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
                                 int getChatCounts = (int)snapshot.getChildrenCount();
 
                                 if (getChatCounts > 0) {
-                                    for (DataSnapshot dataSnapshot1 :snapshot.getChildren()) {
+                                    for (DataSnapshot dataSnapshot1 : snapshot.getChildren()) {
                                         final String getKey = dataSnapshot1.getKey();
                                         chatKey = getKey;
 

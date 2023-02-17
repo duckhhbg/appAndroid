@@ -66,7 +66,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MyViewHo
                 Intent intent = new Intent(context, Chat.class);
                 intent.putExtra("sdt",list2.getSdt());
                 intent.putExtra("name",list2.getName());
-                intent.putExtra("profilePic",list2.getProfilePic());
+                intent.putExtra("profile_pic",list2.getProfilePic());
                 intent.putExtra("chat_key",list2.getChatKey());
 
                 context.startActivity(intent);
